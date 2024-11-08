@@ -1,0 +1,13 @@
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        failureRateThreshold: 50       # percentage of failures to open the circuit
+        waitDurationInOpenState: 10000 # time (ms) to wait in open state before moving to half-open
+        permittedNumberOfCallsInHalfOpenState: 3 # calls allowed in half-open state
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10          # number of calls to consider in closed state
+    instances:
+      GetMobileNumber:
+        baseConfig: default
